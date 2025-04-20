@@ -57,7 +57,7 @@ def create_product(product: Product, session: SessionDep) -> Product:
 def get_products_list(
     session: SessionDep, offset: int = 0, limit: Annotated[int, Query(le=100)] = 100
 ) -> list[Product]:
-    products = session.exec(select(Product).offset(offset).limit(limit).all())
+    products = session.exec(select(Product).offset(offset).limit(limit))
     return products
 
 
