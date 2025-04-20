@@ -1,6 +1,7 @@
 from typing import Annotated
-from fastapi import Depends, FastAPI
-from pydantic import BaseModel
+from fastapi import Depends, FastAPI, Query
+
+# from pydantic import BaseModel
 from sqlmodel import Field, Session, SQLModel, create_engine, select
 
 
@@ -50,6 +51,14 @@ def create_product(product: Product, session: SessionDep) -> Product:
     session.refresh(product)
 
     return product
+
+
+@app.get("/products")
+def get_products_list(
+    session: SessionDep, offset: int = 0, limit: Annotated[int, Query(le=100)] = 100
+) -> list[Product]:
+    products = session.exec(select(Product).offset(offset).limit(limit).all())
+    return products
 
 
 # @app.get("/products/")
