@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from typing import Annotated
 from fastapi import Depends, FastAPI, Query, HTTPException
 
@@ -45,17 +46,23 @@ def get_session():
 
 SessionDep = Annotated[Session, Depends(get_session)]
 
-app = FastAPI()
 
-
-@app.on_event("startup")
-def on_startup():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    print("Initializing DB and Tables...")
     create_db_and_tables()
 
+    yield
 
-# @app.get("/")
-# async def root():
-#     return {"message": "Hello world"}
+    print("App is shutting down...")
+
+
+app = FastAPI(lifespan=lifespan)
+
+
+@app.get("/")
+async def root():
+    return {"message": "Hello world"}
 
 
 # Create Product
@@ -103,6 +110,3 @@ def delete_product(product_id: int, session: SessionDep):
     session.delete(product)
     session.commit()
     return product
-
-
-# Delete All Products
