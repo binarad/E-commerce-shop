@@ -5,11 +5,15 @@ from sqlmodel import Field, Session, SQLModel, create_engine, select
 from fastapi.middleware.cors import CORSMiddleware
 
 
+# TODO: Make TechnicalSpecification class
 class ProductBase(SQLModel):
     name: str = Field(index=True)
     price: float = Field(index=True)
-    imgUrl: str | None = Field(default=None, index=True)
+    type_of_electronics: str = Field(index=True)
     quantity: int = Field(index=True)
+    warranty_period: int = Field(index=True)
+    # technical_specification: TechnicalSpecificationType = Field(index=True) ??
+    imgUrl: str | None = Field(default=None, index=True)
 
 
 class Product(ProductBase, table=True):
