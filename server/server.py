@@ -24,13 +24,6 @@ class ProductPublic(ProductBase):
     id: int
 
 
-class ProductUpdate(ProductBase):
-    name: str | None = None
-    price: float | None = None
-    imgUrl: str | None = None
-    quantity: int | None = None
-
-
 sqlite_file_name = "database.db"
 sqlite_url = f"sqlite:///{sqlite_file_name}"
 
@@ -98,10 +91,9 @@ def get_products_list(
 
 # Get Data For 1 Product?
 
-
 # Update Product
 @app.patch("/products/{product_id}", response_model=ProductPublic)
-def update_product(product_id: int, product: ProductUpdate, session: SessionDep):
+def update_product(product_id: int, product: ProductBase, session: SessionDep):
     product_db = session.get(Product, product_id)
     if not product_db:
         raise HTTPException(status_code=404, detail="Product not found")
