@@ -1,0 +1,21 @@
+#admin-main {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+p {
+	margin: 10px 0;
+	font-size: 30px;
+	font-family: 'Roboto';
+	justify-self: center;
+}
+#admin-panel {
+	width: 1200px;
+	height: 800px;
+	background-color: lightgray;
+	border: 1px solid gray;
+	border-radius: 20px;
+	padding: 10px;
+}
