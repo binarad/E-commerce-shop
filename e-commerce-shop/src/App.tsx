@@ -1,6 +1,7 @@
 import './App.css'
 
 import { useState } from 'react'
+import NavBar from './Components/NavBar'
 
 interface ProductDataType {
 	name: string
@@ -48,6 +49,7 @@ function App() {
 				alignItems: 'center',
 			}}
 		>
+			<NavBar />
 			<h1>App page</h1>
 			<button onClick={fetchData}>Press</button>
 			<button onClick={createProduct}>Create</button>
