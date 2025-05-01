@@ -1,46 +1,11 @@
 from contextlib import asynccontextmanager
-from typing import Annotated
-from fastapi import Depends, FastAPI, Query, HTTPException
-from sqlmodel import Field, Session, SQLModel, create_engine, select
+from typing import Annotated, Dict
+from fastapi import Depends, FastAPI, HTTPException, Query
+from sqlmodel import Session, select
+from database import engine, create_db_and_tables
+from models import Product
+from schemas import ProductCreate, ProductPublic
 from fastapi.middleware.cors import CORSMiddleware
-
-
-# TODO: Make TechnicalSpecification class
-class ProductBase(SQLModel):
-    name: str = Field(index=True)
-    price: float = Field(index=True)
-    type_of_electronics: str = Field(index=True)
-    quantity: int = Field(index=True)
-    warranty_period: int = Field(index=True)
-    # technical_specification: TechnicalSpecificationType = Field(index=True) ??
-    imgUrl: str | None = Field(default=None, index=True)
-
-
-class Product(ProductBase, table=True):
-    id: int | None = Field(default=None, primary_key=True)
-
-
-class ProductPublic(ProductBase):
-    id: int
-
-
-sqlite_file_name = "database.db"
-sqlite_url = f"sqlite:///{sqlite_file_name}"
-
-connect_args = {"check_same_thread": False}
-engine = create_engine(sqlite_url, connect_args=connect_args)
-
-
-def create_db_and_tables():
-    SQLModel.metadata.create_all(engine)
-
-
-def get_session():
-    with Session(engine) as session:
-        yield session
-
-
-SessionDep = Annotated[Session, Depends(get_session)]
 
 
 @asynccontextmanager
@@ -55,25 +20,35 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
-origins = ["http://localhost:5173"]
+# origins = ["http://localhost:5173"]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello world"}
+def get_session():
+    with Session(engine) as session:
+        yield session
 
 
-# Create Product
+SessionDep = Annotated[Session, Depends(get_session)]
+
+
 @app.post("/products/", response_model=ProductPublic)
-def create_product(product: ProductBase, session: SessionDep):
-    db_product = Product.model_validate(product)
+def create_product(product: ProductCreate, session: SessionDep):
+    db_product = Product(
+        name=product.name,
+        type=product.type,
+        manufacturer=product.manufacturer,
+        price=product.price,
+        quantity=product.quantity,
+        warranty_months=product.warranty_months,
+        specs=product.specs.model_dump(),
+    )
     session.add(db_product)
     session.commit()
     session.refresh(db_product)
@@ -89,11 +64,18 @@ def get_products_list(
     return products
 
 
-# Get Data For 1 Product?
+# Get Data For 1 Product
+@app.get("/products/{product_id}", response_model=ProductPublic)
+def get_product(product_id: int, session: SessionDep):
+    product = session.get(Product, product_id)
+    if not product:
+        raise HTTPException(status_code=404, detail="Product not found")
+    return product
+
 
 # Update Product
 @app.patch("/products/{product_id}", response_model=ProductPublic)
-def update_product(product_id: int, product: ProductBase, session: SessionDep):
+def update_product(product_id: int, product: ProductPublic, session: SessionDep):
     product_db = session.get(Product, product_id)
     if not product_db:
         raise HTTPException(status_code=404, detail="Product not found")
@@ -106,7 +88,7 @@ def update_product(product_id: int, product: ProductBase, session: SessionDep):
 
 
 # Delete Product
-@app.delete("/products/{product_id}")
+@app.delete("/products/{product_id}", response_model=ProductPublic)
 def delete_product(product_id: int, session: SessionDep):
     product = session.get(Product, product_id)
     if not product:
@@ -114,3 +96,16 @@ def delete_product(product_id: int, session: SessionDep):
     session.delete(product)
     session.commit()
     return product
+
+
+available_categories = {
+    "smartphone": "Smartphone",
+    "laptop": "Laptop",
+    "tablet": "Tablet",
+    "tv": "TV",
+}
+
+
+@app.get("/categories/", response_model=Dict[str, str])
+def get_categories():
+    return available_categories
