@@ -8,16 +8,23 @@ import '@fontsource/roboto/300.css'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
+import AdminLogin from './Admin/AdminLogin.tsx'
+import Error404Page from './Error404/Error404Page.tsx'
 
 function Main() {
 	const router = createBrowserRouter([
 		{
 			path: '/',
 			element: <App />,
+			errorElement: <Error404Page />,
 		},
 		{
 			path: '/admin',
 			element: <Admin />,
+		},
+		{
+			path: '/login',
+			element: <AdminLogin />,
 		},
 	])
 
