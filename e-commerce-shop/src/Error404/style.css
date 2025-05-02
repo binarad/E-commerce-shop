@@ -1,0 +1,33 @@
+#container {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Roboto';
+}
+
+img {
+	width: 50vw;
+	height: 50vh;
+}
+
+home-link {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 250px;
+	height: 50px;
+	background-color: royalblue;
+	text-decoration: none;
+	color: white;
+	/* border: 1px solid black; */
+	margin: auto;
+	border-radius: 20px;
+}
+
+home-link:hover {
+	background-color: whitesmoke;
+	border: 1px solid black;
+	color: black;
+}
