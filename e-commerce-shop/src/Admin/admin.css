@@ -1,14 +1,15 @@
-#admin-main {
+#admin-container {
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
+	font-family: 'Roboto';
 }
 
 p {
 	margin: 10px 0;
 	font-size: 30px;
-	font-family: 'Roboto';
 	justify-self: center;
 }
 #admin-panel {

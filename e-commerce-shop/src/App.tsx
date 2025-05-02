@@ -1,6 +1,6 @@
 import './App.css'
 
-import { useState } from 'react'
+// import { useState } from 'react'
 import NavBar from './Components/NavBar'
 
 interface ProductDataType {
@@ -11,7 +11,7 @@ interface ProductDataType {
 }
 
 function App() {
-	const [data, setData] = useState<ProductDataType | null>(null)
+	// const [data, setData] = useState<ProductDataType | null>(null)
 
 	const ProductData = {
 		name: '33i22',
