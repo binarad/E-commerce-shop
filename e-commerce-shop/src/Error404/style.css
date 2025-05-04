@@ -12,22 +12,12 @@ img {
 	height: 50vh;
 }
 
-home-link {
+#home-link {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 250px;
-	height: 50px;
 	background-color: royalblue;
 	text-decoration: none;
 	color: white;
-	/* border: 1px solid black; */
-	margin: auto;
 	border-radius: 20px;
-}
-
-home-link:hover {
-	background-color: whitesmoke;
-	border: 1px solid black;
-	color: black;
 }
