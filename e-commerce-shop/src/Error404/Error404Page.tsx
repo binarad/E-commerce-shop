@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router'
 import Error404Img from '../assets/page404.svg'
 import './style.css'
