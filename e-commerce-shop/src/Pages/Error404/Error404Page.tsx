@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import Error404Img from '../assets/page404.svg'
+import Error404Img from '../../assets/page404.svg'
 import './style.css'
 import { Button } from '@mui/material'
 export default function Error404Page() {
