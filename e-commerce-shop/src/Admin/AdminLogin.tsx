@@ -7,7 +7,7 @@ import {
 	Box,
 } from '@mui/material'
 import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 export default function AdminLogin() {
 	const [showPassword, setShowPassword] = useState<boolean>(false)
