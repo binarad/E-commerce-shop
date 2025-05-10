@@ -2,7 +2,9 @@ import { Link } from 'react-router'
 import { ShoppingCart } from '@mui/icons-material'
 import MainFavicon from '/favicon.png'
 export default function NavBar() {
-	const productQuantity = 1
+	const cart = localStorage.getItem('cart')
+	const productQuantity = JSON.parse(cart!).length
+
 	return (
 		<div className='flex h-[65px] w-full flex-row justify-center items-center px-[32px] border-b border-[#D9D9D9] bg-[#fff] gap-6 box-border flex-none order-none self-stretch flex-grow-1'>
 			<Link
