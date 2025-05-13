@@ -25,11 +25,11 @@ function Main() {
 			element: <Admin />,
 		},
 		{
-			path: '/create-product',
+			path: '/admin/create-product',
 			element: <CreateProductPage />,
 		},
 		{
-			path: '/login',
+			path: '/admin-login',
 			element: <AdminLogin />,
 		},
 

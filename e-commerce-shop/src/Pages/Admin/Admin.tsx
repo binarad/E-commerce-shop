@@ -19,7 +19,7 @@ export default function Admin() {
 					</div>
 				</div>
 				<div id='buttons'>
-					<Link to={'/create-product'}>
+					<Link to={'/admin/create-product'}>
 						<button className='bg-sky-600 text-white hover:bg-sky-700'>
 							Create Product
 						</button>

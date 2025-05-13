@@ -43,7 +43,7 @@ interface SmartphoneSpecs {
 }
 
 // --- Laptop specs ---
-interface LaptopSpecs {
+export interface LaptopSpecs {
 	screen_size: number
 	screen_refresh_rate_gz: number
 	screen_resolution: string
