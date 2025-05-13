@@ -1,4 +1,4 @@
-interface CartType {
+export default interface CartType {
 	name: string
 	price: number
 	imgUrl?: string

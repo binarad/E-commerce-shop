@@ -130,4 +130,8 @@ interface ProductPublic extends ProductBase {
 }
 
 // Union type to represent any known product
-type Product = SmartphoneProduct | LaptopProduct | TabletProduct | TVProduct
+export type ProductType =
+	| SmartphoneProduct
+	| LaptopProduct
+	| TabletProduct
+	| TVProduct
