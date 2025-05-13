@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './create_product.css'
+import TechSpecs from './TechSpecs'
 import {
 	Button,
 	FormControl,
@@ -10,18 +11,41 @@ import {
 	TextField,
 } from '@mui/material'
 
+interface Categories {
+	smartphone: string
+	laptop: string
+	tablet: string
+	tv: string
+}
+
 export default function CreateProductPage() {
-	const [category, setCategory] = useState<string>('')
+	const [selectedCategory, setSelectedCategory] = useState<string>('')
+
+	const [categories, setCategories] = useState<Categories | null>(null)
+
+	const getProductsList = async () => {
+		const req = await fetch('http://127.0.0.1:8000/products/')
+		const resp = await req.json()
+		console.log(resp)
+	}
+	useEffect(() => {
+		const fetchCategories = async () => {
+			const resp = await fetch('http://127.0.0.1:8000/categories/')
+			const getCategories = await resp.json()
+			setCategories(getCategories)
+		}
+		fetchCategories()
+	}, [])
 	return (
 		<div id='create-product-main'>
-			<h1>Create Product</h1>
+			<h1 id='title'>Create Product</h1>
 			{/* Do i need img? */}
 			<div id='create-product-container' className='gap-2.5'>
-				<img id='product-image' alt='product image' />
-				<Button variant='contained' className='w-[210px]'>
+				{/* <img id='product-image' alt='product image' />
+				<Button variant='contained' className='w-[250px]'>
 					<label htmlFor='product-image-input'>Click to upload photo</label>
 				</Button>
-				<input type='file' id='product-image-input' className='hidden' />
+				<input type='file' id='product-image-input' className='hidden' /> */}
 
 				<TextField label='Enter the product name' variant='standard' />
 				<FormControl>
@@ -30,13 +54,15 @@ export default function CreateProductPage() {
 						id='category-select'
 						label='Category'
 						variant='standard'
+						value={selectedCategory}
 						onChange={(event: SelectChangeEvent) => {
-							setCategory(event.target.value as string)
+							setSelectedCategory(event.target.value as string)
 						}}
 					>
-						<MenuItem value=''></MenuItem>
-						<MenuItem value='biba'>biba</MenuItem>
-						<MenuItem value='boba'>boba</MenuItem>
+						<MenuItem value='smartphone'>Smartphone</MenuItem>
+						<MenuItem value='laptop'>Laptop</MenuItem>
+						<MenuItem value='tablet'>Tablet</MenuItem>
+						<MenuItem value='tv'>TV</MenuItem>
 					</Select>
 				</FormControl>
 				<TextField variant='standard' type='text' label='Manufacturer' />
@@ -44,8 +70,15 @@ export default function CreateProductPage() {
 				<TextField variant='standard' type='number' label='Quantity' />
 				<TextField variant='standard' type='number' label='Warranty period' />
 				<p>Technical specifications</p>
-				{category && category == 'boba' ? 'Abibas' : ''}
-				<Button variant='contained'>Create Product</Button>
+				<hr />
+				<TechSpecs selectedCategory={selectedCategory} />
+				<Button
+					variant='contained'
+					onClick={getProductsList}
+					className='w-[250px]'
+				>
+					Create Product
+				</Button>
 			</div>
 		</div>
 	)

@@ -1,13 +1,12 @@
 #create-product-main {
 	box-sizing: border-box;
-	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	padding: 10px;
 }
 
-#create-product-main h1 {
+#title {
 	text-align: center;
 	font-size: 30px;
 }
@@ -18,15 +17,32 @@
 	height: 100%;
 	border: 1px solid #d9d9d9;
 	border-radius: 11px;
-	padding: 5px;
+	padding: 10px;
 }
 
-#create-product-container *:not(div) {
-	display: flex;
+.MuiFormControl-root {
+	width: 300px;
+}
+
+#category-select * {
+	padding-left: 0;
+}
+
+#create-product-container input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+/* #create-product-container *:not(div):not(p):not(#product-image-input) {
+	display: flex; 
 	justify-content: center;
 	align-items: center;
-}
+} */
 
+#create-product-container p {
+	font-size: large;
+	font-weight: 500;
+}
 #product-image {
 	height: 200px;
 	width: 200px;
