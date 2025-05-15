@@ -14,21 +14,22 @@ export default function NavBar() {
 				<img src={MainFavicon} alt='main-logo' className='h-[40px] w-[40px]' />
 			</Link>
 
-			<input
+			{/* <input
 				type='text'
 				placeholder='Enter the product name'
 				className='w-[350px] h-[40px] border border-[#d9d9d9] rounded-2xl p-3 text-center' // TODO add search suggestions for name, tech-specs
-			/>
-
-			<Link
-				to={'/cartpage'}
-				className='ml-auto w-[40px] h-[40px] relative flex justify-center items-center'
-			>
-				<ShoppingCart className='w-8 z-0' />
-				<span className='absolute top-[-10px] right-[-10px] bg-slate-600 text-white h-6 w-6 rounded-full flex items-center justify-center text-sm '>
-					{productQuantity}
-				</span>
-			</Link>
+			/> */}
+			<div id='cart-icon' className='ml-auto'>
+				<Link
+					to={'/cartpage'}
+					className='w-[40px] h-[40px] relative flex justify-center items-center'
+				>
+					<ShoppingCart className='w-8 z-0' />
+					<span className='absolute top-[-10px] right-[-10px] bg-slate-600 text-white h-6 w-6 rounded-full flex items-center justify-center text-sm '>
+						{productQuantity}
+					</span>
+				</Link>
+			</div>
 		</div>
 	)
 }

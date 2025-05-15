@@ -39,6 +39,9 @@ input::-webkit-inner-spin-button {
 	align-items: center;
 } */
 
+#create-product-container h1 {
+	margin: 10px 0 0 0;
+}
 #create-product-container p {
 	font-size: large;
 	font-weight: 500;
