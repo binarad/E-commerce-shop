@@ -1,7 +1,16 @@
-import { TextField } from '@mui/material'
-import React from 'react'
+import { Button, TextField } from '@mui/material'
+import { LaptopSpecs } from '../../productData.type'
 
-export default function LaptopSpecs() {
+export default function LaptopSpecsComp(/*props: LaptopSpecs*/) {
+	// const convertToArray = () => {
+	// 	const string = 'A,b,c,d,e,f,x,1289x129x300,1xWifi,2x Bluetooth'
+
+	// 	console.log(string)
+
+	// 	const arrayString = string.split(',')
+	// 	console.log(arrayString)
+	// }
+
 	return (
 		<div className='box-border flex flex-col'>
 			<h1 className='text-2xl'>Screen</h1>

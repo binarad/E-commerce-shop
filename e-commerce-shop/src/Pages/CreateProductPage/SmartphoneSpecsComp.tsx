@@ -1,13 +1,5 @@
-import React from 'react'
-import {
-	Checkbox,
-	FormControl,
-	InputLabel,
-	MenuItem,
-	Select,
-	TextField,
-} from '@mui/material'
-export default function SmartphoneSpecs() {
+import { InputLabel, MenuItem, Select, TextField } from '@mui/material'
+export default function SmartphoneSpecsComp() {
 	return (
 		<div className='box-border flex flex-col'>
 			<h1 className='text-2xl'>Screen</h1>

@@ -104,7 +104,7 @@ interface SmartphoneProduct extends ProductBase {
 	specs: SmartphoneSpecs
 }
 
-interface LaptopProduct extends ProductBase {
+export interface LaptopProduct extends ProductBase {
 	id: number
 	type: 'laptop'
 	specs: LaptopSpecs

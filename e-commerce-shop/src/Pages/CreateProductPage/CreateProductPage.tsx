@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import './create_product.css'
-import TechSpecs from './TechSpecs'
 import {
 	Button,
 	FormControl,
@@ -10,6 +9,10 @@ import {
 	SelectChangeEvent,
 	TextField,
 } from '@mui/material'
+import LaptopSpecsComp from './LaptopSpecsComp'
+import SmartphoneSpecsComp from './SmartphoneSpecsComp'
+import TabletSpecsComp from './TabletSpecsComp'
+import TVSpecsComp from './TVSpecsComp'
 
 interface Categories {
 	smartphone: string
@@ -19,23 +22,31 @@ interface Categories {
 }
 
 export default function CreateProductPage() {
-	const [selectedCategory, setSelectedCategory] = useState<string>('')
+	const [name, setName] = useState<string>('')
+	const [category, setCategory] = useState<string>('')
+	const [manufacturer, setManufacturer] = useState<string>('')
+	const [price, setPrice] = useState<string>('')
+	const [quantity, setQuantity] = useState<string>('')
+	const [warrantyPeriod, setWarrantyPeriod] = useState<string>('')
+	const [laptopScreenSize, setLaptopScreenSize] = useState<string>('')
+	const [laptopScreenRefreshRate, setlaptopScreenRefreshRate] =
+		useState<string>('')
 
-	const [categories, setCategories] = useState<Categories | null>(null)
+	// const [categories, setCategories] = useState<Categories | null>(null)
 
-	const getProductsList = async () => {
-		const req = await fetch('http://127.0.0.1:8000/products/')
-		const resp = await req.json()
-		console.log(resp)
-	}
-	useEffect(() => {
-		const fetchCategories = async () => {
-			const resp = await fetch('http://127.0.0.1:8000/categories/')
-			const getCategories = await resp.json()
-			setCategories(getCategories)
-		}
-		fetchCategories()
-	}, [])
+	// const getProductsList = async () => {
+	// 	const req = await fetch('http://127.0.0.1:8000/products/')
+	// 	const resp = await req.json()
+	// 	console.log(resp)
+	// }
+	// useEffect(() => {
+	// 	const fetchCategories = async () => {
+	// 		const resp = await fetch('http://127.0.0.1:8000/categories/')
+	// 		const getCategories = await resp.json()
+	// 		setCategories(getCategories)
+	// 	}
+	// 	fetchCategories()
+	// }, [])
 	return (
 		<div id='create-product-main'>
 			<h1 id='title'>Create Product</h1>
@@ -54,9 +65,9 @@ export default function CreateProductPage() {
 						id='category-select'
 						label='Category'
 						variant='standard'
-						value={selectedCategory}
+						value={category}
 						onChange={(event: SelectChangeEvent) => {
-							setSelectedCategory(event.target.value as string)
+							setCategory(event.target.value as string)
 						}}
 					>
 						<MenuItem value='smartphone'>Smartphone</MenuItem>
@@ -71,12 +82,16 @@ export default function CreateProductPage() {
 				<TextField variant='standard' type='number' label='Warranty period' />
 				<p>Technical specifications</p>
 				<hr />
-				<TechSpecs selectedCategory={selectedCategory} />
-				<Button
-					variant='contained'
-					onClick={getProductsList}
-					className='w-[250px]'
-				>
+				{category == 'smartphone' ? (
+					<SmartphoneSpecsComp />
+				) : category == 'laptop' ? (
+					<LaptopSpecsComp />
+				) : category == 'tablet' ? (
+					<TabletSpecsComp />
+				) : (
+					<TVSpecsComp />
+				)}
+				<Button variant='contained' className='w-[250px]'>
 					Create Product
 				</Button>
 			</div>
