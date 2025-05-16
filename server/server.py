@@ -58,7 +58,7 @@ def create_product(product: ProductCreate, session: SessionDep):
 # Get Products List
 @app.get("/products/", response_model=list[ProductPublic])
 def get_products_list(
-    session: SessionDep, offset: int = 0, limit: Annotated[int, Query(le=100)] = 100
+    session: SessionDep, offset: int = 0, limit: Annotated[int, Query(le=1000)] = 1000
 ):
     products = session.exec(select(Product).offset(offset).limit(limit))
     return products

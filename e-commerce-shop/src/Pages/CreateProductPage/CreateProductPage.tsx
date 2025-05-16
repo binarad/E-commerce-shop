@@ -208,6 +208,7 @@ export default function CreateProductPage() {
         <Button variant="contained" className="w-[250px]" onClick={ProductPOST}>
           Create Product
         </Button>
+        <h1>MAKE a BUTTON TO RETURN TO THE HOME PAGE</h1>
       </div>
     </div>
   );
