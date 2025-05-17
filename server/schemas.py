@@ -51,7 +51,7 @@ class LaptopSpecs(BaseModel):
     ram_gb: int
     ram_type: str
     ram_frequency_ghz: float
-    storage: str
+    storage: int
     storage_type: str
     color: str
     weight_kg: float

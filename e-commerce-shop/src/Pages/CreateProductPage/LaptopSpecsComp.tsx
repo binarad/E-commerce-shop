@@ -1,251 +1,287 @@
-import { TextField } from "@mui/material";
+import { TextField } from '@mui/material'
+import { LaptopSpecs, ProductSpecs } from '../../productData.type'
+import { useEffect } from 'react'
 
 interface LaptopSpecsProps {
-  setScreenSize: React.Dispatch<React.SetStateAction<string>>;
-  setScreenRefreshRate: React.Dispatch<React.SetStateAction<string>>;
-  setScreenResolution: React.Dispatch<React.SetStateAction<string>>;
-  setMatrixType: React.Dispatch<React.SetStateAction<string>>;
-  setCpu: React.Dispatch<React.SetStateAction<string>>;
-  setCpuGen: React.Dispatch<React.SetStateAction<string>>;
-  setCpuFreq: React.Dispatch<React.SetStateAction<string>>;
-  setGpu: React.Dispatch<React.SetStateAction<string>>;
-  setGpuRamSize: React.Dispatch<React.SetStateAction<string>>;
-  setGpuType: React.Dispatch<React.SetStateAction<string>>;
-  setRamSize: React.Dispatch<React.SetStateAction<string>>;
-  setRamType: React.Dispatch<React.SetStateAction<string>>;
-  setRamFreq: React.Dispatch<React.SetStateAction<string>>;
-  setStorageSize: React.Dispatch<React.SetStateAction<string>>;
-  setStorageType: React.Dispatch<React.SetStateAction<string>>;
-  setColor: React.Dispatch<React.SetStateAction<string>>;
-  setWeight: React.Dispatch<React.SetStateAction<string>>;
-  setSize: React.Dispatch<React.SetStateAction<string>>;
-  setNetworkAdapters: React.Dispatch<React.SetStateAction<string[]>>;
-  setUsbPorts: React.Dispatch<React.SetStateAction<string[]>>;
-  setVideoPorts: React.Dispatch<React.SetStateAction<string[]>>;
-  setAudioPorts: React.Dispatch<React.SetStateAction<string[]>>;
-  setWirelessConnections: React.Dispatch<React.SetStateAction<string[]>>;
-  setDeliverySet: React.Dispatch<React.SetStateAction<string[]>>;
-  setOperatingSystem: React.Dispatch<React.SetStateAction<string>>;
+	specs: LaptopSpecs | null
+	setSpecs: React.Dispatch<React.SetStateAction<ProductSpecs | null>>
 }
 
 export default function LaptopSpecsComp(props: LaptopSpecsProps) {
-  return (
-    <div className="box-border flex flex-col">
-      <h1 className="text-2xl">Screen</h1>
-      <TextField
-        type="number"
-        variant="standard"
-        label="Screen size (inch)"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setScreenSize(e.target.value);
-        }}
-      />
-      <TextField
-        type="number"
-        variant="standard"
-        label="Screen refresh rate (ghz)"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setScreenRefreshRate(e.target.value);
-        }}
-      />
-      <TextField
-        variant="standard"
-        label="Screen resolution"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setScreenResolution(e.target.value);
-        }}
-      />
-      <TextField
-        variant="standard"
-        label="Matrix type"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setMatrixType(e.target.value);
-        }}
-      />
-      <h1 className="text-2xl">CPU</h1>
-      <TextField
-        variant="standard"
-        label="CPU"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setCpu(e.target.value);
-        }}
-      />
-      <TextField
-        variant="standard"
-        label="CPU generation"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setCpuGen(e.target.value);
-        }}
-      />
-      <TextField
-        type="number"
-        variant="standard"
-        label="CPU frequency (ghz)"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setCpuFreq(e.target.value);
-        }}
-      />
-      <h1 className="text-2xl">GPU</h1>
-      <TextField
-        variant="standard"
-        label="GPU"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setGpu(e.target.value);
-        }}
-      />
-      <TextField
-        type="number"
-        variant="standard"
-        label="GPU Ram size (gb)"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setGpuRamSize(e.target.value);
-        }}
-      />
-      <TextField
-        variant="standard"
-        label="GPU type"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setGpuType(e.target.value);
-        }}
-      />
-      <h1 className="text-2xl">RAM</h1>
-      <TextField
-        type="number"
-        variant="standard"
-        label="RAM size (gb)"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setRamSize(e.target.value);
-        }}
-      />
-      <TextField
-        variant="standard"
-        label="RAM type"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setRamType(e.target.value);
-        }}
-      />
-      <TextField
-        type="number"
-        variant="standard"
-        label="RAM frequency (ghz)"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setRamFreq(e.target.value);
-        }}
-      />
-      <h1 className="text-2xl">Storage</h1>
-      <TextField
-        type="number"
-        variant="standard"
-        label="Storage size (gb)"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setStorageSize(e.target.value);
-        }}
-      />
-      <TextField
-        variant="standard"
-        label="Storage type"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setStorageType(e.target.value);
-        }}
-      />
-      <br />
-      <hr />
-      <TextField
-        variant="standard"
-        label="Color"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setColor(e.target.value);
-        }}
-      />
-      <TextField
-        type="number"
-        variant="standard"
-        label="Weight (kg)"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setWeight(e.target.value);
-        }}
-      />
-      <TextField
-        variant="standard"
-        label="Size LxWxH"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setSize(e.target.value);
-        }}
-      />
-      <TextField
-        variant="standard"
-        label="Network adapters"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setNetworkAdapters(e.target.value.split(", "));
-        }}
-      />
-      <TextField
-        variant="standard"
-        label="USB ports"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setUsbPorts(e.target.value.split(", "));
-        }}
-      />
-      <TextField
-        variant="standard"
-        label="Video ports"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setVideoPorts(e.target.value.split(", "));
-        }}
-      />
-      <TextField
-        variant="standard"
-        label="Audio ports"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setAudioPorts(e.target.value.split(", "));
-        }}
-      />
-      <TextField
-        variant="standard"
-        label="Wireless connections"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setWirelessConnections(e.target.value.split(", "));
-        }}
-      />
-      <TextField
-        variant="standard"
-        label="Delivery set"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setDeliverySet(e.target.value.split(", "));
-        }}
-      />
-      <TextField
-        variant="standard"
-        label="Operating system"
-        onChange={(e) => {
-          e.preventDefault();
-          props.setOperatingSystem(e.target.value);
-        }}
-      />
-    </div>
-  );
+	const { specs, setSpecs } = props
+
+	const handleChange = <K extends keyof LaptopSpecs>(
+		key: K,
+		value: LaptopSpecs[K]
+	) => {
+		setSpecs(prev => ({ ...(prev as LaptopSpecs), [key]: value }))
+	}
+	useEffect(() => {
+		if (!specs) {
+			setSpecs({
+				screen_size: 0,
+				screen_refresh_rate_gz: 0,
+				screen_resolution: '',
+				matrix_type: '',
+				cpu: '',
+				cpu_generation: '',
+				cpu_frequency_ghz: 0,
+				gpu: '',
+				gpu_storage_size_gb: 0,
+				gpu_type: '',
+				ram_gb: 0,
+				ram_type: '',
+				ram_frequency_ghz: 0,
+				storage: 0,
+				storage_type: '',
+				color: '',
+				weight_kg: 0,
+				size: '',
+				network_adapters: [],
+				usb_ports: [],
+				video_ports: [],
+				audio_ports: [],
+				wireless_connections: [],
+				delivery_set: [],
+				os: '',
+			})
+		}
+	}, [specs, setSpecs])
+	return (
+		<div className='box-border flex flex-col'>
+			<h1 className='text-2xl'>Screen</h1>
+			<TextField
+				type='number'
+				variant='standard'
+				label='Screen size (inch)'
+				value={specs?.screen_size || ''}
+				onChange={e => {
+					handleChange('screen_size', parseFloat(e.target.value))
+				}}
+			/>
+			<TextField
+				type='number'
+				variant='standard'
+				label='Screen refresh rate (ghz)'
+				value={specs?.screen_refresh_rate_gz || ''}
+				onChange={e => {
+					handleChange('screen_refresh_rate_gz', parseFloat(e.target.value))
+				}}
+			/>
+			<TextField
+				variant='standard'
+				label='Screen resolution'
+				value={specs?.screen_resolution || ''}
+				onChange={e => {
+					handleChange('screen_resolution', e.target.value)
+				}}
+			/>
+			<TextField
+				variant='standard'
+				label='Matrix type'
+				value={specs?.matrix_type || ''}
+				onChange={e => {
+					handleChange('matrix_type', e.target.value)
+				}}
+			/>
+			<h1 className='text-2xl'>CPU</h1>
+			<TextField
+				variant='standard'
+				label='CPU'
+				value={specs?.cpu || ''}
+				onChange={e => {
+					handleChange('cpu', e.target.value)
+				}}
+			/>
+			<TextField
+				variant='standard'
+				label='CPU generation'
+				value={specs?.cpu_generation || ''}
+				onChange={e => {
+					handleChange('cpu_generation', e.target.value)
+				}}
+			/>
+			<TextField
+				type='number'
+				variant='standard'
+				label='CPU frequency (ghz)'
+				value={specs?.cpu_frequency_ghz || ''}
+				onChange={e => {
+					handleChange('cpu_frequency_ghz', parseFloat(e.target.value))
+				}}
+			/>
+			<h1 className='text-2xl'>GPU</h1>
+			<TextField
+				variant='standard'
+				label='GPU'
+				value={specs?.gpu || ''}
+				onChange={e => {
+					handleChange('gpu', e.target.value)
+				}}
+			/>
+			<TextField
+				type='number'
+				variant='standard'
+				label='GPU Ram size (gb)'
+				value={specs?.gpu_storage_size_gb || ''}
+				onChange={e => {
+					handleChange('gpu_storage_size_gb', parseFloat(e.target.value))
+				}}
+			/>
+			<TextField
+				variant='standard'
+				label='GPU type'
+				value={specs?.gpu_type}
+				onChange={e => {
+					handleChange('gpu_type', e.target.value)
+				}}
+			/>
+			<h1 className='text-2xl'>RAM</h1>
+			<TextField
+				type='number'
+				variant='standard'
+				label='RAM size (gb)'
+				value={specs?.ram_gb || ''}
+				onChange={e => {
+					handleChange('ram_gb', parseFloat(e.target.value))
+				}}
+			/>
+			<TextField
+				variant='standard'
+				label='RAM type'
+				value={specs?.ram_type || ''}
+				onChange={e => {
+					handleChange('ram_type', e.target.value)
+				}}
+			/>
+			<TextField
+				type='number'
+				variant='standard'
+				label='RAM frequency (ghz)'
+				value={specs?.ram_frequency_ghz || ''}
+				onChange={e => {
+					handleChange('ram_frequency_ghz', parseFloat(e.target.value))
+				}}
+			/>
+			<h1 className='text-2xl'>Storage</h1>
+			<TextField
+				type='number'
+				variant='standard'
+				label='Storage size (gb)'
+				value={specs?.storage || ''}
+				onChange={e => {
+					handleChange('storage', parseFloat(e.target.value))
+				}}
+			/>
+			<TextField
+				variant='standard'
+				label='Storage type'
+				value={specs?.storage_type || ''}
+				onChange={e => {
+					handleChange('storage_type', e.target.value)
+				}}
+			/>
+			<br />
+			<hr />
+			<TextField
+				variant='standard'
+				label='Color'
+				value={specs?.color || ''}
+				onChange={e => {
+					handleChange('color', e.target.value)
+				}}
+			/>
+			<TextField
+				type='number'
+				variant='standard'
+				label='Weight (kg)'
+				value={specs?.weight_kg || ''}
+				onChange={e => {
+					handleChange('weight_kg', parseFloat(e.target.value))
+				}}
+			/>
+			<TextField
+				variant='standard'
+				label='Size LxWxH'
+				value={specs?.size || ''}
+				onChange={e => {
+					handleChange('size', e.target.value)
+				}}
+			/>
+			<TextField
+				variant='standard'
+				label='Network adapters'
+				value={specs?.network_adapters.join(', ') || ''}
+				onChange={e => {
+					handleChange(
+						'network_adapters',
+						e.target.value.split(', ').map(s => s.trim())
+					)
+				}}
+			/>
+			<TextField
+				variant='standard'
+				label='USB ports'
+				value={specs?.usb_ports.join(', ') || ''}
+				onChange={e => {
+					handleChange(
+						'usb_ports',
+						e.target.value.split(', ').map(s => s.trim())
+					)
+				}}
+			/>
+			<TextField
+				variant='standard'
+				label='Video ports'
+				value={specs?.video_ports.join(', ') || ''}
+				onChange={e => {
+					handleChange(
+						'video_ports',
+						e.target.value.split(', ').map(s => s.trim())
+					)
+				}}
+			/>
+			<TextField
+				variant='standard'
+				label='Audio ports'
+				value={specs?.audio_ports.join(', ') || ''}
+				onChange={e => {
+					handleChange(
+						'audio_ports',
+						e.target.value.split(', ').map(s => s.trim())
+					)
+				}}
+			/>
+			<TextField
+				variant='standard'
+				label='Wireless connections'
+				value={specs?.wireless_connections.join(', ') || ''}
+				onChange={e => {
+					handleChange(
+						'wireless_connections',
+						e.target.value.split(', ').map(s => s.trim())
+					)
+				}}
+			/>
+			<TextField
+				variant='standard'
+				label='Delivery set'
+				value={specs?.delivery_set.join(', ') || ''}
+				onChange={e => {
+					handleChange(
+						'delivery_set',
+						e.target.value.split(', ').map(s => s.trim())
+					)
+				}}
+			/>
+			<TextField
+				variant='standard'
+				label='Operating system'
+				value={specs?.os || ''}
+				onChange={e => {
+					handleChange('os', e.target.value)
+				}}
+			/>
+		</div>
+	)
 }
