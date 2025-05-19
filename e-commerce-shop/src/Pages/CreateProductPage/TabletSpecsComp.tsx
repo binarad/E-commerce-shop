@@ -22,7 +22,7 @@ const TabletSpecsComp = ({ specs, setSpecs }: Props) => {
 				label='Screen Size'
 				type='number'
 				value={specs?.screen_size}
-				onChange={e => handleChange('screen_size', +e.target.value)}
+				onChange={e => handleChange('screen_size', Number(e.target.value))}
 			/>
 			<TextField
 				variant='standard'
@@ -35,21 +35,23 @@ const TabletSpecsComp = ({ specs, setSpecs }: Props) => {
 				label='Screen Refresh Rate (Hz)'
 				type='number'
 				value={specs?.screen_refresh_rate_gz}
-				onChange={e => handleChange('screen_refresh_rate_gz', +e.target.value)}
+				onChange={e =>
+					handleChange('screen_refresh_rate_gz', Number(e.target.value))
+				}
 			/>
 			<TextField
 				variant='standard'
 				label='Storage Size (GB)'
 				type='number'
 				value={specs?.storage_size}
-				onChange={e => handleChange('storage_size', +e.target.value)}
+				onChange={e => handleChange('storage_size', Number(e.target.value))}
 			/>
 			<TextField
 				variant='standard'
 				label='RAM (GB)'
 				type='number'
 				value={specs?.ram_gb}
-				onChange={e => handleChange('ram_gb', +e.target.value)}
+				onChange={e => handleChange('ram_gb', Number(e.target.value))}
 			/>
 			<TextField
 				variant='standard'
@@ -62,7 +64,9 @@ const TabletSpecsComp = ({ specs, setSpecs }: Props) => {
 				label='Battery Capacity (mAh)'
 				type='number'
 				value={specs?.battery_capacity_mah}
-				onChange={e => handleChange('battery_capacity_mah', +e.target.value)}
+				onChange={e =>
+					handleChange('battery_capacity_mah', Number(e.target.value))
+				}
 			/>
 		</div>
 	)

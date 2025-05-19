@@ -133,9 +133,9 @@ export default function CreateProductPage() {
 				) : category == 'laptop' ? (
 					<LaptopSpecsComp specs={specs as LaptopSpecs} setSpecs={setSpecs} />
 				) : category == 'tablet' ? (
-					<TabletSpecsComp />
+					<TabletSpecsComp specs={specs as TabletSpecs} setSpecs={setSpecs} />
 				) : category == 'tv' ? (
-					<TVSpecsComp />
+					<TVSpecsComp specs={specs as TVSpecs} setSpecs={setSpecs} />
 				) : (
 					''
 				)}

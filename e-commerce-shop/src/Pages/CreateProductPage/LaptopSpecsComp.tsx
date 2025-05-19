@@ -131,7 +131,7 @@ export default function LaptopSpecsComp(props: LaptopSpecsProps) {
 			<TextField
 				variant='standard'
 				label='GPU type'
-				value={specs?.gpu_type}
+				value={specs?.gpu_type || ''}
 				onChange={e => {
 					handleChange('gpu_type', e.target.value)
 				}}
