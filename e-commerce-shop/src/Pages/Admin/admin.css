@@ -1,81 +1,82 @@
 #admin-container {
-	padding: 10px;
-	height: 100%;
-	box-sizing: border-box;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	font-family: 'Roboto';
+  padding: 10px;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto";
 }
 
 #admin-panel {
-	width: 1200px;
-	height: 800px;
-	background-color: #f5f5f5;
-	border: 1px solid gray;
-	border-radius: 20px;
-	padding: 10px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  width: 1200px;
+  height: 800px;
+  background-color: #f5f5f5;
+  border: 1px solid gray;
+  border-radius: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #admin-panel h1 {
-	margin: 10px 0;
-	font-size: 30px;
-	justify-self: center;
+  margin: 10px 0;
+  font-size: 30px;
+  justify-self: center;
 }
 
 #admin-panel button {
-	width: 200px;
-	height: 45px;
-	border-radius: 13px;
-	justify-self: self-end;
+  width: 200px;
+  height: 45px;
+  border-radius: 13px;
+  justify-self: self-end;
 }
 
 #admin-panel button:hover {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 #buttons {
-	align-self: flex-end;
-	margin: 10px 0;
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(1, 1fr);
-	gap: 30px;
+  align-self: flex-end;
+  margin: 10px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  gap: 30px;
 }
 
 #created-products-list {
-	width: 100%;
-	height: 500px;
-	margin: 10px 0;
-	border: 1px solid black;
+  width: 100%;
+  height: 500px;
+  margin: 10px 0;
+  border: 1px solid black;
+  overflow: visible;
 }
 
 .created-product {
-	height: 60px;
-	width: 100%;
-	display: grid;
-	grid-template-columns: repeat(13, 1fr);
-	border-bottom: 1px solid #d9d9d9;
+  height: 60px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  border-bottom: 1px solid #d9d9d9;
 }
 
 .created-product * {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #product-name {
-	grid-column: span 2 / span 2;
+  grid-column: span 2 / span 2;
 }
 
 #product-price {
-	grid-column-start: 7;
+  grid-column-start: 7;
 }
 
 #checkbox {
-	grid-column-start: -2;
+  grid-column-start: -2;
 }
