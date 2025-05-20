@@ -69,14 +69,11 @@ class TabletSpecs(BaseModel):
     screen_size: float
     matrix_type: str
     screen_refresh_rate_gz: float
-    number_of_sim_cards: int
-    sim_cards_format: str
     ram_gb: int
     storage_size: int
     cd_card_support: bool
     cd_card_format: str
     cd_card_max_size: str
-    combo_slot: bool
     front_camera_quality_mp: float
     front_camera_features: str
     front_camera_placement: str
