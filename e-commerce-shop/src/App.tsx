@@ -8,15 +8,29 @@ export interface CartItem {
   price: number;
   quantity: number;
 }
+
+export function loadCartFromStorage(): CartItem[] {
+  const stored = localStorage.getItem("cart");
+  if (!stored) {
+    localStorage.setItem("cart", JSON.stringify([]));
+    return [];
+  }
+  try {
+    return JSON.parse(stored);
+  } catch {
+    console.log("Failed to parse cart");
+    localStorage.setItem("cart", JSON.stringify([]));
+    return [];
+  }
+}
 function App() {
-  const [cartData, setCartData] = useState<CartItem[]>([]);
+  const [cartData, setCartData] = useState<CartItem[]>(loadCartFromStorage());
 
   // Load cart from localStorage on mount
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
-    setCartData(storedCart);
+    setCartData(loadCartFromStorage());
   }, []);
-
+  // Make function
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartData));
   }, [cartData]);

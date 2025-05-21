@@ -25,7 +25,7 @@ export default function HomePage({ cartData, setCartData }: HomePageProps) {
   // }, []);
 
   return (
-    <div>
+    <div className="flex">
       <div id="products-list" className="flex">
         {productsList.map((product) => (
           <ProductCard
@@ -38,6 +38,9 @@ export default function HomePage({ cartData, setCartData }: HomePageProps) {
           />
         ))}
       </div>
+      <aside className="flex flex-col justify-self-end">
+        <h1>CREATE FILTER</h1>
+      </aside>
     </div>
   );
 }
