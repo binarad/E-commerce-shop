@@ -2,7 +2,13 @@
 import { useEffect, useState } from "react";
 import { ProductPublic } from "../productData.type";
 import ProductCard from "../Components/ProductCard";
-export default function HomePage() {
+import { CartItem } from "../App";
+
+interface HomePageProps {
+  cartData: CartItem[];
+  setCartData: React.Dispatch<React.SetStateAction<CartItem[]>>;
+}
+export default function HomePage({ cartData, setCartData }: HomePageProps) {
   const [productsList, setProductsList] = useState<ProductPublic[]>([]);
   useEffect(() => {
     const getProductsList = async () => {
@@ -12,9 +18,14 @@ export default function HomePage() {
     };
     getProductsList();
   }, []);
+
+  // useEffect(() => {
+  //   const cartJSON = localStorage.getItem("cart");
+  //   if (cartJSON.length == 0) localStorage.setItem("cart", JSON.stringify([]));
+  // }, []);
+
   return (
     <div>
-      <h1>HomePage</h1>
       <div id="products-list" className="flex">
         {productsList.map((product) => (
           <ProductCard
@@ -22,16 +33,11 @@ export default function HomePage() {
             name={product.name}
             price={product.price}
             quantity={product.quantity}
+            cartData={cartData}
+            setCartData={setCartData}
           />
         ))}
       </div>
-
-      {/* <button
-        className="border border-black w-32 h-16"
-        onClick={getProductsList}
-      > */}
-      {/* click
-      </button> */}
     </div>
   );
 }

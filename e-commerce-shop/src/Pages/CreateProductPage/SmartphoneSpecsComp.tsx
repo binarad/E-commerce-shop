@@ -86,7 +86,7 @@ export default function SmartphoneSpecsComp(props: SmartphoneSpecsProps) {
     key: K,
     value: SmartphoneSpecs[K],
   ) => {
-    setSpecs((prev) => ({ ...(prev as SmartphoneSpecs), [key]: value }));
+    setSpecs({ ...(specs as SmartphoneSpecs), [key]: value });
   };
 
   return (
