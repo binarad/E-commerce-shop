@@ -8,7 +8,7 @@ interface NavBarProps {
 }
 export default function NavBar({ cartSize }: NavBarProps) {
   return (
-    <div className="flex h-[65px] w-full flex-row justify-center items-center px-[32px] border-b border-[#D9D9D9] bg-[#fff] gap-6 box-border flex-none order-none self-stretch flex-grow-1">
+    <div className="flex h-[65px] w-full flex-row justify-center items-center px-[32px] border-b border-[#D9D9D9] bg-[#fff] gap-6 box-border flex-none order-none self-stretch ">
       <Link
         to={"/"}
         className="w-[40px] h-[40px] flex flex-row items-center flex-none order-none grow-0 mr-auto"

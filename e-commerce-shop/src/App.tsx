@@ -39,10 +39,11 @@ function App() {
     <div
       style={{
         display: "flex",
+        gap: "10px",
         flexDirection: "column",
-        gap: 10,
         justifyItems: "center",
         alignItems: "center",
+        height: "100%",
       }}
     >
       <NavBar cartSize={cartData.length} />
