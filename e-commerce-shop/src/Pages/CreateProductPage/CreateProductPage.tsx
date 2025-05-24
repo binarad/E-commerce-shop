@@ -9,6 +9,8 @@ import {
   SelectChangeEvent,
   TextField,
 } from "@mui/material";
+
+import { Link } from "react-router"
 import LaptopSpecsComp from "./LaptopSpecsComp";
 import SmartphoneSpecsComp from "./SmartphoneSpecsComp";
 import TabletSpecsComp from "./TabletSpecsComp";
@@ -23,10 +25,6 @@ import {
 import { useNavigate } from "react-router";
 
 export default function CreateProductPage() {
-  // const [data, setData] = useState<ProductPublic>({
-  // 	name: '',
-  // 	// todo
-  // })
   const [name, setName] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [manufacturer, setManufacturer] = useState<string>("");
@@ -140,7 +138,7 @@ export default function CreateProductPage() {
           <SmartphoneSpecsComp
             specs={specs as SmartphoneSpecs}
             setSpecs={setSpecs}
-          /> //Dont forget about this
+          />
         ) : category == "laptop" ? (
           <LaptopSpecsComp specs={specs as LaptopSpecs} setSpecs={setSpecs} />
         ) : category == "tablet" ? (
@@ -150,16 +148,22 @@ export default function CreateProductPage() {
         ) : (
           ""
         )}
-        <Button
-          variant="contained"
-          className="w-[250px]"
-          onClick={() => {
-            ProductPOST();
-          }}
-        >
-          Create Product
-        </Button>
-        <h1>MAKE a BUTTON TO RETURN TO THE HOME PAGE</h1>
+        <div className="flex gap-4">
+          <Button
+            variant="contained"
+            className="w-[250px]"
+            onClick={() => {
+              ProductPOST();
+            }}
+          >
+            Create Product
+          </Button>
+          <Link to="/admin">
+            <Button variant="text" className="w-[150px]" color="secondary">
+              Go back
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
   );
