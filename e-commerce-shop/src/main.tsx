@@ -11,6 +11,7 @@ import '@fontsource/roboto/700.css'
 import Error404Page from './Pages/Error404/Error404Page.tsx'
 import CartPage from './Pages/Cart/CartPage.tsx'
 import CreateProductPage from './Pages/CreateProductPage/CreateProductPage.tsx'
+import ProductDetails from './Pages/ProductDetails.tsx'
 
 function Main() {
   const router = createBrowserRouter([
@@ -26,6 +27,10 @@ function Main() {
     {
       path: '/admin/create-product',
       element: <CreateProductPage />,
+    },
+    {
+      path: "/products/:productID",
+      element: <ProductDetails />
     },
 
     {

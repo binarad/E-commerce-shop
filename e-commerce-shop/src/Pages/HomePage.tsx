@@ -4,6 +4,7 @@ import { ProductPublic } from '../productData.type'
 import ProductCard from '../Components/ProductCard'
 import { CartItem } from '../App'
 import { Box, Slider } from '@mui/material'
+import { Link } from 'react-router'
 
 interface HomePageProps {
   cartData: CartItem[]
@@ -118,14 +119,16 @@ export default function HomePage({ cartData, setCartData }: HomePageProps) {
             return productVal ? values.includes(productVal) : false;
           }))
           .map(product => (
-            <ProductCard
-              key={product.id}
-              name={product.name}
-              price={product.price}
-              quantity={product.quantity}
-              cartData={cartData}
-              setCartData={setCartData}
-            />
+            <Link key={product.name} to={`/products/${product.name}`}>
+              <ProductCard
+                key={product.id}
+                name={product.name}
+                price={product.price}
+                quantity={product.quantity}
+                cartData={cartData}
+                setCartData={setCartData}
+              />
+            </Link>
           ))}
       </div>
       <aside className='flex flex-col w-[380px] h-full overflow-y-auto overflow-x-hidden ml-auto border-l border-[#d9d9d9] p-5 mr-2'>
@@ -172,7 +175,7 @@ export default function HomePage({ cartData, setCartData }: HomePageProps) {
         <h1> Technical specification</h1>
         {Object.entries(filteredSpecs).map(([specName, values]) => (
           <div key={specName} className='my-4'>
-            <h2 className='font-semibold capitalize'>{specName.charAt(0).toUpperCase() + specName.slice(1).toLowerCase()}</h2>
+            <h2 className='font-semibold capitalize'>{specName.replace(/_/g, " ")}</h2>
             {values.map(value => (
               <div key={value} className='flex items-center gap-2'>
                 <input
