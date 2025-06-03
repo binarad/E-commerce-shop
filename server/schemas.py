@@ -151,4 +151,3 @@ ProductCreate = Annotated[
     Field(discriminator="type"),
 ]
 
-# Модель для чтения из БД

@@ -1,4 +1,3 @@
-// TODO: End home page
 import { useEffect, useMemo, useState } from 'react'
 import { ProductPublic } from '../productData.type'
 import ProductCard from '../Components/ProductCard'
@@ -132,6 +131,7 @@ export default function HomePage({ cartData, setCartData }: HomePageProps) {
           ))}
       </div>
       <aside className='flex flex-col w-[380px] h-full overflow-y-auto overflow-x-hidden ml-auto border-l border-[#d9d9d9] p-5 mr-2'>
+        {/* TODO: REPLACE FILTER WITH FILTER COMPONENT */}
         <h1>Brand</h1>
         {productsList.map(product => (
           <div className='flex gap-2' key={product.manufacturer}>

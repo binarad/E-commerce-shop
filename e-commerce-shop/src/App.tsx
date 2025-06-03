@@ -1,4 +1,3 @@
-// import { useState } from 'react'
 import { useEffect, useState } from "react";
 import NavBar from "./Components/NavBar";
 import HomePage from "./Pages/HomePage";
@@ -26,11 +25,10 @@ export function loadCartFromStorage(): CartItem[] {
 function App() {
   const [cartData, setCartData] = useState<CartItem[]>(loadCartFromStorage());
 
-  // Load cart from localStorage on mount
+  // Loading cart from localStorage on Mount
   useEffect(() => {
     setCartData(loadCartFromStorage());
   }, []);
-  // Make function
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartData));
   }, [cartData]);
